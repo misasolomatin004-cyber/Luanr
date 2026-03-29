@@ -5,7 +5,7 @@ import { CheckCircle, CreditCard, Truck } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 export default function CheckoutPage() {
-  const { cart, cartTotal } = useShop();
+  const { cart, cartTotal, clearCart } = useShop();
   const navigate = useNavigate();
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
@@ -30,6 +30,7 @@ export default function CheckoutPage() {
       setStep(step + 1);
     } else {
       // Process order
+      clearCart();
       alert('Order placed successfully!');
       navigate('/shop');
     }

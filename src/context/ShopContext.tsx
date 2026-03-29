@@ -10,6 +10,7 @@ interface ShopContextType {
   addToCart: (product: Product) => void;
   removeFromCart: (productId: number) => void;
   updateQuantity: (productId: number, quantity: number) => void;
+  clearCart: () => void;
   cartTotal: number;
   cartCount: number;
   isCartOpen: boolean;
@@ -49,6 +50,10 @@ export function ShopProvider({ children }: { children: ReactNode }) {
     );
   };
 
+  const clearCart = () => {
+    setCart([]);
+  };
+
   const toggleFavorite = (productId: number) => {
     setFavorites((prev) =>
       prev.includes(productId)
@@ -67,6 +72,7 @@ export function ShopProvider({ children }: { children: ReactNode }) {
         addToCart,
         removeFromCart,
         updateQuantity,
+        clearCart,
         cartTotal,
         cartCount,
         isCartOpen,
